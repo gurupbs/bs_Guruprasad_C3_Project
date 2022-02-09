@@ -63,4 +63,8 @@ public class Restaurant {
     public String getName() {
         return name;
     }
-}
+    public Double getOrderCost(List items) {
+        return null;
+    }
+
+    }

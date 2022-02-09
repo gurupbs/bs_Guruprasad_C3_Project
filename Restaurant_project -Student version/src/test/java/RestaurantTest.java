@@ -57,4 +57,12 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void select_items_from_the_menu_and_verify_the_order_cost(){
+        List<String> addItems = new ArrayList<>();
+        addItems.add("Sweet corn soup");
+        addItems.add("Vegetable lasagne");
+        assertEquals(388.0, restaurant.getOrderCost(addItems),"Order cost is 388.0 Rupees");
+    }
 }
