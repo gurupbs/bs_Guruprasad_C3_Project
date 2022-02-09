@@ -18,28 +18,30 @@ public class Restaurant {
 
     public boolean isRestaurantOpen() {
         LocalTime localTime = getCurrentTime();
-        if (localTime.isAfter(openingTime) && localTime.isBefore(closingTime)){
+        if (localTime.isAfter(openingTime) && localTime.isBefore(closingTime)) {
             return true;
         }
         return false;
     }
 
-    public LocalTime getCurrentTime(){ return  LocalTime.now(); }
+    public LocalTime getCurrentTime() {
+        return LocalTime.now();
+    }
 
     public List<Item> getMenu() {
         return this.menu;
     }
 
-    private Item findItemByName(String itemName){
-        for(Item item: menu) {
-            if(item.getName().equals(itemName))
+    private Item findItemByName(String itemName) {
+        for (Item item : menu) {
+            if (item.getName().equals(itemName))
                 return item;
         }
         return null;
     }
 
     public void addToMenu(String name, int price) {
-        Item newItem = new Item(name,price);
+        Item newItem = new Item(name, price);
         menu.add(newItem);
     }
 
@@ -51,20 +53,26 @@ public class Restaurant {
 
         menu.remove(itemToBeRemoved);
     }
-    public void displayDetails(){
-        System.out.println("Restaurant:"+ name + "\n"
-                +"Location:"+ location + "\n"
-                +"Opening time:"+ openingTime +"\n"
-                +"Closing time:"+ closingTime +"\n"
-                +"Menu:"+"\n"+getMenu());
+
+    public void displayDetails() {
+        System.out.println("Restaurant:" + name + "\n"
+                + "Location:" + location + "\n"
+                + "Opening time:" + openingTime + "\n"
+                + "Closing time:" + closingTime + "\n"
+                + "Menu:" + "\n" + getMenu());
 
     }
 
     public String getName() {
         return name;
     }
-    public Double getOrderCost(List items) {
-        return null;
-    }
 
+    public Double getOrderCost(List items) {
+        Double orderCost = 0.0;
+        for (Object item : items) {
+            Item itemName = findItemByName((String) item);
+            orderCost = orderCost + itemName.getPrice();
+        }
+        return orderCost;
     }
+}
